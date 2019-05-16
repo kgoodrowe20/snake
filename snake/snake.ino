@@ -21,6 +21,7 @@ void loop()
   spawn();
   moveplayer();
   check();
+  eatapple();
   DisplaySlate();
   delay(150);
   ClearSlate();
@@ -29,6 +30,14 @@ void loop()
 void spawn()
 {
   DrawPx(appleX, appleY, Yellow);
+}
+
+void eatapple()
+{
+  if (playerX == appleX && playerY == appleY)
+    {
+      gotApple = true;
+    }
 }
 
 void moveplayer()
