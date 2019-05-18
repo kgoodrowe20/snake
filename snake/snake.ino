@@ -17,19 +17,27 @@ void setup()
 
 void loop()
 {
-  DrawPx(playerX, playerY, Red);
   spawn();
-  moveplayer();
-  check();
+  DrawPx(playerX, playerY, Red);
   eatapple();
+  moveplayer();
+  movee();
+  check();
   DisplaySlate();
-  delay(150);
   ClearSlate();
+  delay(120);
 }
 
 void spawn()
 {
   DrawPx(appleX, appleY, Yellow);
+  if (gotApple == true)
+    {
+      appleX = random(8);
+      appleY = random(8);
+      DrawPx(appleX, appleY, Yellow);
+      gotApple = false;
+    }
 }
 
 void eatapple()
@@ -42,25 +50,45 @@ void eatapple()
 
 void moveplayer()
 {
-  CheckButtonsPress();
+  CheckButtonsPress(); 
     if (Button_Left)
       {
-        playerX--;
+        dir = 270;
       }
     if (Button_Right)
       {
-        playerX++;
+        dir = 90;
       }
     if (Button_Down)
       {
-        playerY--;
+        dir = 180;
       }
     if (Button_Up)
       {
-        playerY++;
+        dir = 0;
       }
 }
 
+void movee()
+{
+ if (dir == 270)
+    {
+      playerX--;   
+    }
+ if (dir == 90)
+    {
+      playerX++; 
+    }
+ if (dir == 0)
+    {
+      playerY++;
+    }
+ if (dir == 180)
+    {
+      playerY--; 
+    }
+}
+  
 void check()
 {
   if(playerX > 7)
@@ -80,3 +108,5 @@ void check()
     playerY = 7;
   }
 }
+
+//struct point
